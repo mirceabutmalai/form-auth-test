@@ -1,0 +1,62 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# custom GIT files
+.gitattributes	text export-ignore
+.gitignore	text export-ignore
+
+# Custom for JAVA/C project files
+.htaccess text
+*.pom text
+*.java	text
+*.properties	text
+*.php text
+*.css text
+*.js text
+*.htm text
+*.html text
+*.xml text
+*.xsl text
+*.ent text
+*.txt text
+*.ini text
+*.inc text
+*.c text
+*.cpp text
+*.c++ text
+*.h text
+*.hpp text
+
+# These files are binary and should be left untouched 
+# (binary is a macro for -text -diff) 
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.ico binary
+*.tiff binary
+*.wav binary
+*.mp3 binary
+*.mov binary
+*.mp4 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.vpp binary
+
+# Documents 
+*.doc  diff=word
+*.DOC  diff=word
+*.docx diff=word
+*.DOCX diff=word
+*.dot  diff=word
+*.DOT  diff=word
+*.pdf  diff=astextplain
+*.PDF  diff=astextplain
+*.rtf  diff=astextplain
+*.RTF  diff=astextplain

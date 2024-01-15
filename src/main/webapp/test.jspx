@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : test.jspx
+    Created on : 15 Jan 2024, 16:01:00
+-->
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:webutil="/WEB-INF/tlds/web-util.tld"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          version="2.1">
+
+    <jsp:directive.page contentType="text/html"/>
+    <jsp:directive.page pageEncoding="utf-8"/>
+    <jsp:directive.page session="true"/>
+    <webutil:setResponseHeader header="Cache-Control" value="no-cache" />
+    <jsp:scriptlet>out.println("&lt;!DOCTYPE html&gt;");</jsp:scriptlet>
+
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="Cache-Control" content="no-cache"/>
+            <meta name="copyright" content="&amp;copy; RADCOM SA - ${webutil:formatCurrentDate(pageContext, 'yyyy')}"/>
+            <meta name="keywords" content="form authentication"/>
+            <meta name="description" content="FORM AUTH web application"/>
+            <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+            <link rel="shortcut icon" type="image/x-icon" href="${webutil:makeUrl(pageContext, '/res01/img/favicon.ico')}" />
+            <title>FORM-AUTH test</title>
+
+            <!-- css styles for app -->
+            <!-- javascript libraries for app -->
+            <script type="text/javascript">
+var require = {
+    baseUrl: "${webutil:makeUrl(pageContext, '/res01/js')}",
+    paths: {
+        'jquery': 'jquery.min',
+        'jquery-ui': 'jquery-ui.min',
+        'bootstrap': 'bootstrap.min',
+        'logger': 'logger.min',
+        'rdcwebform': 'rdcwebform.min'
+    },
+    waitSeconds: 15
+};
+            </script>
+            <script type="text/javascript" src="${webutil:makeUrl(pageContext, '/res01/js/require.min.js')}"><!-- prevent minimization --></script>
+        </head>
+
+        <body>
+            <div><!-- prevent minimisation --></div>
+        </body>
+    </html>
+</jsp:root>

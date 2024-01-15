@@ -1,0 +1,946 @@
+/* Color Schemes */
+/* culorile in RGB */
+body {
+    --mainColor: 32, 79, 140;
+    --altColor: 242, 120, 48;
+    --bodyBg: 216, 235, 242;
+    --normalCardBg: 242, 242, 242;
+    --mainCardBg: 255, 255, 255;
+    --textColor: 2, 2, 2;
+    --green: 60, 214, 0;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: 'catamaranbold';
+    src: url('../font/catamaran-bold-webfont.woff2') format('woff2'),
+        url('../font/catamaran-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'catamaranlight';
+    src: url('../font/catamaran-light-webfont.woff2') format('woff2'),
+        url('../font/catamaran-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'catamaranregular';
+    src: url('../font/catamaran-regular-webfont.woff2') format('woff2'),
+        url('../font/catamaran-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Default & global elements */
+div {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'catamaranregular';
+    font-weight: 400;
+    background: rgb(var(--bodyBg));
+    height: 100%; 
+    min-width: 1100px;
+}
+
+section,
+.hourglass,
+section.message > div,
+section.message > button {
+    display: none;
+}
+
+body.waiting section.message,
+body.mesaj section.message,
+body.popup section.popup,
+body.login section.login,
+body.config section.config {
+    display: flex;
+}
+
+body.monitorizare section.main,
+body.sds section.sdsMsg,
+body.waiting section.message .hourglass,
+body.cu_buton section.message button {
+    display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'catamaranbold';
+    font-weight: 700;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(var(--mainColor));
+}
+
+hr {
+    border-color: rgba(var(--mainColor), .3);
+}
+
+button > i,
+a > i {
+    transition: color 0.3s ease;
+    color: rgba(var(--mainColor), .3);
+}
+
+button:hover > i,
+a:hover > i {
+    color: rgb(var(--mainColor));
+}
+
+section {
+    padding: 16px 8px;
+}
+
+.btn {
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--mainColor), 0.3);
+    transition: all .3s ease;
+    font-weight: 700;
+    color: rgb(var(--mainColor));
+}
+
+.btn:hover {
+    background-color: rgba(var(--mainColor), .2);
+}
+
+button:disabled,
+.btn:disabled,
+.btn:disabled:focus,
+.btn:disabled:active,
+.btn:disabled:active i,
+.btn:disabled:hover > i,
+.btn:disabled:active i:active {
+    background: rgba(128, 128, 128, .5);
+    opacity: .4;
+    cursor: default;
+    color: rgb(var(--mainColor));
+}
+
+.btn:disabled:active i,
+.btn:disabled:hover > i {
+    background: transparent;
+}
+
+.btn:active,
+.btn:active > i, 
+.btn.active,
+.btn.active > i {
+    background-color: rgb(var(--mainColor));
+    color: rgb(var(--normalCardBg));
+}
+
+.btn.toggleState {
+    color: rgb(var(--normalCardBg));
+}
+
+
+.row {
+    display: flex;
+    margin-left: -4px;
+    margin-right: -4px;
+    align-items: stretch;
+}
+
+.row > div {
+    flex: 1;
+    margin: 4px;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: rgb(var(--bodyBg));
+    color: rgb(var(--mainColor));
+}
+
+.dropdown-menu > li > a:hover i,
+.dropdown-menu > li > a:focus i {
+    color: rgb(var(--mainColor));
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgba(var(--mainColor), .85);
+    color: rgb(var(--normalCardBg));
+    border: 1px solid rgb(var(--mainColor));
+    border-radius: .25rem;
+}
+
+.input-group > :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.input-group > .form-control,
+.input-group > .form-select {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
+
+/* Navbar */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 .46875rem 2.1875rem rgba(4, 9, 20, .03), 0 .9375rem 1.40625rem rgba(4, 9, 20, .03), 0 .25rem .53125rem rgba(4, 9, 20, .05), 0 .125rem .1875rem rgba(4, 9, 20, .03);
+    background: rgb(var(--normalCardBg));
+    height: 60px;
+    align-items: center;
+    padding: 0 80px 0 8px;
+    position: relative;
+    z-index: 4;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav li a {
+    padding: .5rem 1rem;
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.navLinks button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: rgb(var(--mainColor));
+    margin: 0 4px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.navLinks button:hover, 
+.navLinks button.active  {
+    background: rgba(var(--mainColor), .2);
+}
+
+section.menuSection {
+    padding: 0;
+    position: relative;
+    z-index: 5;
+    display: block;
+}
+
+button.menuBtn {
+    border: none;
+    font-size: 2em;
+    color: rgba(var(--altColor));
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+}
+
+button.menuBtn:hover {
+    color: rgba(var(--altColor), .7);
+}
+
+.lang button.linkBtn {
+    padding: 2px 15px;
+    margin-top: 10px;
+    color: rgba(var(--mainColor), .3);
+}
+
+.lang button.linkBtn:hover,
+.lang button.selected {
+    color: rgb(var(--mainColor));
+}
+
+.lang button.linkBtn:not(:last-child) {
+    border-right: 1px solid rgba(var(--mainColor), .2);
+}
+
+.menu {
+    position: fixed;
+    width: 280px;
+    height: 100vh;
+    top: 0;
+    right: -280px;
+    transition: all .3s ease;
+    z-index: 10;
+    background: rgb(var(--normalCardBg));
+}
+
+.menu.openMenu {
+    right: 0;
+    box-shadow: 7px 0 20px rgba(0, 0, 0, .5);
+}
+
+.menu .menuBtn {
+    position: static;
+}
+
+.menu .menuHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--mainColor), .5);
+    margin: 0;
+    margin-left: 8px;
+    padding-bottom: 15px;
+}
+
+.menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu > ul {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+
+.menu li h4 {
+    background: rgba(var(--mainColor), .15);
+    padding: 10px 15px;
+    margin: 0;
+}
+
+.menu a {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(var(--mainColor), .2);
+    display: block;
+    width: calc(100% - 30px);
+    transition: all .3s ease;
+}
+
+.menu a.active {
+    pointer-events: none;
+    cursor: default;
+    background: rgb(var(--mainColor));
+    color: rgb(var(--normalCardBg));
+}
+
+.menu a.cfgOpt {
+    padding: 15px;
+    font-weight: bold;
+    background: rgba(var(--altColor), .15);
+}
+
+.menu a.cfgOpt:hover {
+    background: rgba(var(--altColor), .3);
+}
+
+.menu a.cfgOpt i {
+    color: rgb(var(--altColor));
+}
+
+.menu a.cfgOpt:hover i {
+    color: rgb(var(--mainColor));
+}
+
+button.linkBtn {
+    border: none;
+    background: transparent;
+    color: var(rgb(--mainColor));
+    transition: all .3s ease;
+}
+
+button.linkBtn:hover {
+    font-weight: bold;
+}
+
+button.linkBtn.selected {
+    font-weight: bold;
+}
+
+.lang {
+    display: flex;
+}
+
+.states {
+    font-size: 0;
+}
+
+
+.states > div {
+    display: inline-block;
+    height: 43px;
+    width: 70px;
+    background-size: contain;
+    margin: 0 10px 0 5px;
+    border-right: 1px solid rgba(var(--mainColor), .2);
+}
+
+.states > div:last-child {
+    border: none;
+}
+
+.userBtn {
+    border: none;
+    background: none;
+    padding: 5px 0 5px 40px;
+    position: relative;
+}
+
+.userBtn::before {
+    content: '\f2be';
+    font-family: 'icons-112';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.7rem;
+    color: rgba(var(--altColor), .5);
+    transition: color 0.3s ease;
+}
+
+.open .userBtn::before {
+    color: rgb(var(--altColor));
+}
+
+.userBtn .userName {
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Main content */
+
+/* Pages */
+section.main > .row {
+    height: calc(100vh - 160px);
+}
+
+section.main .card .card-body,
+.activePatch,
+.availableGroups {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+    overflow-y: auto;
+    align-items: flex-start;
+}
+
+section.main .card.collapsible {
+    flex: 0;
+    flex-basis: 30px;
+    margin: 4px 2px;
+    background: rgb(var(--mainColor));
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+section.main .card.collapsible .card-header span,
+section.main .card.collapsible .card-body,
+section.main .card.collapsible .card-buttons,
+section.main .card.collapsible.collapsed .card-label {
+    display: none;
+}
+
+section.main .card.collapsible .card-label {
+    color: rgb(var(--normalCardBg));
+    text-orientation: sideways;
+    writing-mode: vertical-rl;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+section.main .card .card-buttons {
+    position: absolute;
+    right: .7rem;
+    top: .7rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-buttons button i {
+    color: rgb(var(--mainColor));
+}
+
+section.main .card.collapsible .card-header {
+    color: rgb(var(--normalCardBg));
+}
+
+section.main .card.collapsible .card-header i {
+    transition: all 0.3s ease;
+    margin: 0 4px -4px -4px;
+    position: relative;
+}
+
+section.main .card.collapsible.collapsed .card-header i {
+    transform: rotate(180deg);
+}
+
+section.main .card.collapsible.collapsed .card-header {
+    color: rgb(var(--mainColor));
+    cursor: pointer;
+}
+
+section.main .card.collapsible.collapsed {
+    background: rgb(var(--normalCardBg));
+    flex: 1;
+    cursor: default;
+}
+
+section.main .card.collapsible.collapsed .card-body,
+section.main .card.collapsible.collapsed .card-buttons {
+    display: block;
+}
+
+.inactiveCard.card.collapsible.collapsed .card-body {
+    display: flex;
+}
+
+section.main .card.collapsible.collapsed .card-header span {
+    display: inline;
+}
+
+.groupBox {
+    display: flex;
+    align-items: flex-start;
+    flex: 0;
+    flex-basis: calc(50% - 8px);
+    flex-wrap: wrap;
+    margin: 4px;
+    border: 2px solid rgba(var(--mainColor), .3);
+    background-color: rgb(var(--bodyBg));
+    padding: 4px;
+    border-radius: 3px;
+    color: rgb(var(--textColor));
+}
+
+.groupBox .ck {
+    flex-basis: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.groupBox h5,
+.groupBox h6 {
+    margin: 0;
+    font-size: .9rem;
+    width: 100%;
+}
+
+.groupBox h5 {
+    color: rgb(var(--mainColor));
+}
+
+.groupBox .icons {
+    flex:0 0 65px;
+    height: 30px;
+    margin: 0 8px;
+    position: relative;
+    font-size: 1.5em;
+    content: "";
+    text-align: right;
+}
+
+.er_btn button {
+    width:100%;
+}
+
+section.message,
+.middleCard {
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.mesaj.error .icon {
+    background: url('../img/error.png') center no-repeat;
+}
+
+.mesaj.warning .icon {
+    background: url('../img/warn.png') center no-repeat;
+}
+
+.mesaj.info .icon {
+    background: url('../img/info.png') center no-repeat;
+}
+
+.mesaj.ok .icon {
+    background: url('../img/ok.png') center no-repeat;
+}
+
+.mesaj.error .icon,
+.mesaj.warning .icon,
+.mesaj.info .icon,
+.mesaj.ok .icon {
+    display: block !important;
+}
+
+.mesaj .icon {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 16px;
+    background-size: contain !important;
+}
+
+section.message h2 {
+    width: 80%;
+    text-align: center;
+
+}
+
+section.message button {
+    padding: .8rem 1.4rem;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgb(var(--mainColor));
+    color: rgb(var(--normalCardBg));
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+section.popup {
+    background: rgba(0, 0, 0, .6);
+    z-index: 100;
+}
+
+section.login > .card {
+    padding-top: 60px;
+    width: 350px;
+}
+
+section.login .card-footer {
+    text-align: center;
+}
+
+section.login .bullet {
+    font-size: 4.2em;
+    line-height: 1;
+    color: rgb(var(--normalCardBg));
+    background: rgb(var(--mainColor));
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    position: absolute;
+    top: -64px;
+    left: calc(50% - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.authBtn {
+    padding: 10px 20px;
+}
+
+.btn.authBtn i {
+    padding-right: 10px;
+}
+
+section.config > .card {
+    min-width: 550px;
+    background-color: rgb(var(--normalCardBg));
+}
+
+section.config .card-body > div {
+    border-bottom: 1px solid rgba(var(--mainColor), .3);
+}
+
+section.config .form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+section.config .form-group label {
+    flex: 0 0 50%;
+}
+
+section.config .form-group.checkbox {
+    padding: 10px 0;
+}
+
+.errors p {
+    color: red;
+    font-size: .9em;
+    margin-top: 8px;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.errors p::before {
+    content: '\e819';
+    font-family: "icons-112";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* Clepsidra */
+
+.hourglass,
+.hourglass:before,
+.hourglass:after {
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.hourglass {
+    --polygonH: polygon(0% 0%, 100% 0%, 100% 5.55%, 95% 5.55%, 95% 28%, 60% 46%, 60% 54%, 95% 72%, 95% 94.45%, 100% 94.45%, 100% 100%, 0% 100%, 0% 94.45%, 5% 94.45%, 5% 72%, 40% 54%, 40% 46%, 5% 28%, 5% 5.55%, 0% 5.55%);
+    animation-name: flip;
+    animation-timing-function: ease-in-out;
+    background-image: linear-gradient(rgb(var(--mainColor)) 0.5em, #737a8c55 0.5em 8.5em, rgb(var(--mainColor)) 8.5em);
+    -webkit-clip-path: var(--polygonH);
+    clip-path: var(--polygonH);
+    overflow: hidden;
+    position: relative;
+    width: 5em;
+    height: 9em;
+    z-index: 0;
+}
+
+.hourglass:before,
+.hourglass:after {
+    animation-timing-function: linear;
+    content: "";
+    display: block;
+    position: absolute;
+}
+
+.hourglass:before {
+    --polygonB1: polygon(0% 0%, 100% 0%, 100% 24%, 50% 47%, 50% 47%, 50% 47%, 50% 47%, 50% 47%, 50% 47%, 50% 47%, 50% 47%, 0% 24%);
+    --polygonB2: polygon(0% 4%, 100% 4%, 100% 24%, 55% 45%, 55% 100%, 55% 100%, 55% 100%, 45% 100%, 45% 100%, 45% 100%, 45% 45%, 0% 24%);
+    --polygonB3: polygon(0% 24%, 100% 24%, 100% 24%, 55% 45%, 55% 80%, 100% 100%, 100% 100%, 0% 100%, 0% 100%, 45% 80%, 45% 45%, 0% 24%);
+    --polygonB4: polygon(45% 45%, 55% 45%, 55% 45%, 55% 45%, 55% 58%, 100% 76%, 100% 100%, 0% 100%, 0% 76%, 45% 58%, 45% 45%, 45% 45%);
+    --polygonB5: polygon(50% 53%, 50% 53%, 50% 53%, 50% 53%, 50% 53%, 100% 76%, 100% 100%, 0% 100%, 0% 76%, 50% 53%, 50% 53%, 50% 53%);
+    animation-name: fill;
+    background-color: rgb(var(--altColor));
+    background-size: 100% 3.6em;
+    -webkit-clip-path: var(--polygonB1);
+    clip-path: var(--polygonB1);
+    top: 0.5em;
+    left: 0.5em;
+    width: 4em;
+    height: 8em;
+    z-index: 1;
+}
+
+.hourglass:after {
+    animation-name: glare;
+    background:
+        linear-gradient(90deg, #0000 0.5em, #0003 0.5em 1.5em, #0000 1.5em 3.5em, #fff3 3.5em 4.5em, #fff0 4.5em 6.5em, #0003 6.5em 7.5em, #0000 7.5em) 0 0 / 100% 0.5em,
+        linear-gradient(90deg, #0000 0.75em, #0003 0.75em 1.25em, #0000 1.25em 3.75em, #fff3 3.75em 4.25em, #fff0 4.25em 6.75em, #0003 6.75em 7.25em, #0000 7.25em) 0 0.5em / 100% 8em,
+        linear-gradient(90deg, #0000 0.5em, #0003 0.5em 1.5em, #0000 1.5em 3.5em, #fff3 3.5em 4.5em, #fff0 4.5em 6.5em, #0003 6.5em 7.5em, #0000 7.5em) 0 100% / 100% 0.5em;
+    background-repeat: repeat-x;
+    top: 0;
+    left: -3em;
+    width: 200%;
+    height: 100%;
+    z-index: 2;
+}
+
+
+.search .dot-flashing {
+    position: absolute;
+    right:30px;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background-color: rgb(var(--mainColor));
+    animation: dot-flashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+}
+
+.search .dot-flashing::before,
+.search .dot-flashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+}
+.search .dot-flashing::before {
+    left: -10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background-color: rgb(var(--mainColor));
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 0s;
+}
+.search .dot-flashing::after {
+    left: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    background-color: rgb(var(--mainColor));
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 1s;
+}
+.newContact .dot-flashing {
+    display: none;
+}
+
+@media only screen and (max-width: 1670px) {
+    .groupBox {
+        flex: 0;
+        flex-basis: 100%;
+    }
+}
+
+
+/* Animations */
+@keyframes fill {
+    from {
+        -webkit-clip-path: var(--polygonB1);
+        clip-path: var(--polygonB1);
+    }
+
+    10% {
+        -webkit-clip-path: var(--polygonB2);
+        clip-path: var(--polygonB2);
+    }
+
+    45% {
+        -webkit-clip-path: var(--polygonB3);
+        clip-path: var(--polygonB3);
+    }
+
+    80% {
+        -webkit-clip-path: var(--polygonB4);
+        clip-path: var(--polygonB4);
+    }
+
+    85%, to {
+        -webkit-clip-path: var(--polygonB5);
+        clip-path: var(--polygonB5);
+    }
+}
+
+@keyframes glare {
+    from, 90% {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(3em);
+    }
+}
+
+@keyframes flip {
+    from, 90% {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotatie {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.template {
+    display: none;
+}

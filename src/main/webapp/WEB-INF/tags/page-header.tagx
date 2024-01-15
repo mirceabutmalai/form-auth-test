@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : page-header.tagx
+    Created on : 04 Jul 2023, 14:04:00
+-->
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:tcc="urn:jsptagdir:/WEB-INF/tags"
+          xmlns:webutil="/WEB-INF/tlds/web-util.tld"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          version="2.0">
+
+    <jsp:directive.tag pageEncoding="UTF-8" />
+    <jsp:directive.attribute name="pageDontNavigate" required="true"
+                             type="java.lang.Boolean" rtexprvalue="true" />
+
+    <section class="menuSection">
+        <button id="idBtnOpenMenu" class="menuBtn" type="button" title="open menu">
+            <span class="ic-menu"><!-- prevent minimization --></span>
+        </button>
+        <div class="menu">
+            <div class="menuHeader">
+                <div class="lang">
+                    <c:if test="${webutil:calcLanguage(pageContext) == 'ro'}">
+                        <button id="idBtnLangRo" class="linkBtn selected" type="button" title="limba romana">RO</button>
+                    </c:if>
+                    <c:if test="${webutil:calcLanguage(pageContext) != 'ro'}">
+                        <button id="idBtnLangRo" class="linkBtn" type="button" title="limba romana">RO</button>
+                    </c:if>
+                    <c:if test="${webutil:calcLanguage(pageContext) == 'en'}">
+                        <button id="idBtnLangEn" class="linkBtn selected" type="button" title="english language">EN</button>
+                    </c:if>
+                    <c:if test="${webutil:calcLanguage(pageContext) != 'en'}">
+                        <button id="idBtnLangEn" class="linkBtn" type="button" title="english language">EN</button>
+                    </c:if>
+                </div>
+                <button id="idBtnHideMenu" class="menuBtn" type="button" title="hide menu"><i class="ic-cancel"><!-- prevent minimisation --></i></button>
+            </div>
+            <ul id="idUlMenu">
+                <c:if test="${not(empty(sessionScope['x-user-info']))}">
+                    <c:if test="${webutil:isUserInRole(pageContext.request, 'FORM-AUTH-ADMIN')}">
+                        <li>
+                            <h4>admin</h4>
+                            <ul>
+                            </ul>
+                        </li>
+                    </c:if>
+
+                    <c:if test="${webutil:isUserInRole(pageContext.request, 'FORM-AUTH-OPER')}">
+                        <li>
+                            <h4>operation</h4>
+                            <ul>
+                                <tcc:menu-item pageName="TEST" itemName="test"
+                                               pageUrl="${webutil:makeUrl(pageContext, '/test.jspx')}"
+                                               pageDontNavigate="${pageDontNavigate}"/>
+                            </ul>
+                        </li>
+                    </c:if>
+                </c:if>
+            </ul>
+        </div>
+    </section>
+    <script type="text/javascript">
+(function () {
+    require(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
+        var aMenuJqElem = jQuery('section.menuSection .menu');
+        jQuery('#idBtnOpenMenu').on('click', null, null, function () {
+            aMenuJqElem.removeClass('openMenu');
+            aMenuJqElem.addClass('openMenu');
+        });
+        jQuery('#idBtnHideMenu').on('click', null, null, function () {
+            aMenuJqElem.removeClass('openMenu');
+        });
+    });
+    require(['rdcwebform'], function(rdcWebForm) {
+        (new rdcWebForm.LinkWithReload({
+            linkId: 'idBtnLangRo',
+            linkUrl: '${webutil:makeUrl(pageContext, '/main/changeLocale?lang=ro')}',
+            debug: false
+        })).install();
+        (new rdcWebForm.LinkWithReload({
+            linkId: 'idBtnLangEn',
+            linkUrl: '${webutil:makeUrl(pageContext, '/main/changeLocale?lang=en')}',
+            debug: false
+        })).install();
+    });
+})();
+    </script>
+
+    <nav>
+        <div id="idDivNavLinks" class="navLinks"><!-- prevent minimization --></div>
+        <div id="idDivStates" class="states"><!-- prevent minimization --></div>
+        <div class="dropdown">
+            <c:if test="${not(empty(sessionScope['x-user-info']))}">
+                <button class="userBtn dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <span class="userName">${webutil:escapeHtml4(sessionScope['x-user-info'].displayName)}</span>
+                    <span class="caret"><!-- prevent minimization --></span>
+                </button>
+                <ul id="idUlNavDropDownContents" class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li>
+                        <a href="${webutil:makeUrl(pageContext, '/main/logout')}">
+                            <i class="ic-unlink"><!-- prevent minimization --></i>
+                            logout
+                        </a>
+                    </li>
+                </ul>
+            </c:if>
+        </div>
+    </nav>
+</jsp:root>

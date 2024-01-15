@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : error-login.jspx
+    Created on : 15 Jan 2024, 16:01:00
+-->
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:tcc="urn:jsptagdir:/WEB-INF/tags"
+          xmlns:webutil="/WEB-INF/tlds/web-util.tld"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          version="2.1">
+
+    <jsp:directive.page contentType="text/html"/>
+    <jsp:directive.page pageEncoding="utf-8"/>
+    <jsp:directive.page session="true"/>
+    <webutil:setResponseHeader header="Cache-Control" value="no-cache" />
+    <jsp:scriptlet>out.println("&lt;!DOCTYPE html&gt;");</jsp:scriptlet>
+
+    <tcc:page-template pageType="simple" pageHeadSubTitle="error login" pageDontNavigate="false">
+        <section class="message">
+            <h1>error login</h1>
+            <div class="icon"><!-- prevent minimisation --></div>
+            <div class="hourglass"><!-- prevent minimisation --></div>
+            <h2>error login - user / password incorrect</h2>
+        </section>
+        <script type="text/javascript">
+(function () {
+    require(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
+        jQuery('body').addClass('mesaj error');
+    });
+})();
+        </script>
+    </tcc:page-template>
+</jsp:root>

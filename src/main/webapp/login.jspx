@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : login.jspx
+    Created on : 15 Jan 2024, 16:01:00
+-->
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:tcc="urn:jsptagdir:/WEB-INF/tags"
+          xmlns:webutil="/WEB-INF/tlds/web-util.tld"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          version="2.1">
+
+    <jsp:directive.page contentType="text/html"/>
+    <jsp:directive.page pageEncoding="utf-8"/>
+    <jsp:directive.page session="true"/>
+    <webutil:setResponseHeader header="Cache-Control" value="no-cache" />
+    <jsp:scriptlet>out.println("&lt;!DOCTYPE html&gt;");</jsp:scriptlet>
+
+    <tcc:page-template pageType="simple" pageHeadSubTitle="login" pageDontNavigate="false">
+        <section class="login middleCard">
+            <div class="card">
+                <form id="idform" action="${webutil:makeUrl(pageContext, '/j_security_check')}" method="post">
+                    <div class="bullet"><i class="ic-user-circle"><!-- prevent minimisation --></i></div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="ic-user"><!-- prevent minimisation --></i>
+                            </span>
+                            <input id="iduser" name="j_username" type="text" class="form-control" placeholder="username" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="ic-lock"><!-- prevent minimisation --></i>
+                            </span>
+                            <input id="idpass" name="j_password" type="password" class="form-control" placeholder="password" />
+                        </div>
+                        <div class="errors"><!-- prevent minimisation --></div>
+                    </div>
+                    <div class="card-footer">
+                        <button id="idSubmitBtn" class="btn authBtn" type="submit" form="idform"><i class="ic-lock-open"><!-- prevent minimisation --></i> LOGIN</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <script type="text/javascript">
+(function () {
+    require(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
+        jQuery('body').addClass('login');
+        jQuery('#iduser').focus();
+    });
+})();
+        </script>
+    </tcc:page-template>
+</jsp:root>

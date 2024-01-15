@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : error-404.jspx
+    Created on : 15 Jan 2024, 16:01:00
+-->
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:tcc="urn:jsptagdir:/WEB-INF/tags"
+          xmlns:webutil="/WEB-INF/tlds/web-util.tld"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          version="2.1">
+
+    <jsp:directive.page contentType="text/html"/>
+    <jsp:directive.page pageEncoding="utf-8"/>
+    <jsp:directive.page session="true"/>
+    <jsp:directive.page isErrorPage="true"/>
+    <webutil:setResponseHeader header="Cache-Control" value="no-cache" />
+    <webutil:setResponseStatus value="404" />
+    <jsp:scriptlet>out.println("&lt;!DOCTYPE html&gt;");</jsp:scriptlet>
+
+    <tcc:page-template pageType="simple" pageHeadSubTitle="404" pageDontNavigate="false">
+        <section class="message">
+            <h1>error 404</h1>
+            <div class="icon"><!-- prevent minimisation --></div>
+            <div class="hourglass"><!-- prevent minimisation --></div>
+            <h2>error 404 - not found</h2>
+        </section>
+        <script type="text/javascript">
+(function () {
+    require(['jquery', 'bootstrap'], function(jQuery, bootstrap) {
+        jQuery('body').addClass('mesaj warning');
+    });
+})();
+        </script>
+    </tcc:page-template>
+</jsp:root>

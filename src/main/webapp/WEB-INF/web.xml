@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="4.0">
+
+    <description>FORM-AUTH test interfaces</description>
+    <display-name>FORM-AUTH test interfaces</display-name>
+
+    <context-param>
+        <param-name>log4j.config.file</param-name>
+        <param-value>log4j.conf</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>ro.radcom.frm.LoggerInitializer</listener-class>
+    </listener>
+    <listener>
+        <listener-class>ro.radcom.frm.HttpSessionListenerImpl</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>MainAppFilter</filter-name>
+        <filter-class>ro.radcom.frm.servlet.MainAppFilter</filter-class>
+        <init-param>
+            <param-name>excludeUrlPattern 1</param-name>
+            <param-value>/res(\d){2}/.*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>MainAppFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LocaleForwardFilter</filter-name>
+        <filter-class>ro.radcom.frm.servlet.LocaleForwardFilter</filter-class>
+        <init-param>
+            <param-name>excludeUrlPattern 1</param-name>
+            <param-value>/res(\d){2}/.*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocaleForwardFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AddDefaultCharsetFilter</filter-name>
+        <filter-class>ro.radcom.frm.servlet.AddDefaultCharsetFilter</filter-class>
+        <init-param>
+            <param-name>includeUrlPattern.1</param-name>
+            <param-value>/res(\d){2}/.*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>AddDefaultCharsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>HttpHeaderSecurityFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+        <init-param>
+            <param-name>hstsEnabled</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>antiClickJackingEnabled</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>blockContentTypeSniffingEnabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>HttpHeaderSecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ExpiresFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+        <init-param>
+            <param-name>ExpiresByType image</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType font/ttf</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType font/woff</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType font/woff2</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType application/vnd.ms-fontobject</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType text/css</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType application/javascript</param-name>
+            <param-value>access plus 1 year 1 month</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExpiresFilter</filter-name>
+        <url-pattern>/res08/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>MainAppServlet</servlet-name>
+        <servlet-class>ro.radcom.frm.servlet.MainAppServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MainAppServlet</servlet-name>
+        <url-pattern>/main/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jspx</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/error-400.jspx</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/error-401.jspx</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error-403.jspx</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jspx</location>
+    </error-page>
+    <error-page>
+        <error-code>408</error-code>
+        <location>/error-408.jspx</location>
+    </error-page>
+
+    <security-constraint>
+        <display-name>global resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>global authenticated pages</web-resource-name>
+            <url-pattern>/index.jspx</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>FORM-AUTH-ADMIN</role-name>
+            <role-name>FORM-AUTH-OPER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>administrator resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>pages</web-resource-name>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>FORM-AUTH-ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>user resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>pages</web-resource-name>
+            <url-pattern>/test.jspx</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>FORM-AUTH-OPER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>FORM-AUTH</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jspx</form-login-page>
+            <form-error-page>/error-login.jspx</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-role>
+        <description/>
+        <role-name>FORM-AUTH-ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>FORM-AUTH-OPER</role-name>
+    </security-role>
+</web-app>

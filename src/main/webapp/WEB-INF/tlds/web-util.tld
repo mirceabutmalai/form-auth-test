@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>webutil</short-name>
+    <uri>/WEB-INF/tlds/web-util.tld</uri>
+
+    <tag>
+        <name>setResponseHeader</name>
+        <tag-class>ro.radcom.frm.util.SetResponseHeaderHandler</tag-class>
+        <attribute>
+            <name>header</name>
+            <type>java.lang.String</type>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+    <tag>
+        <name>setResponseStatus</name>
+        <tag-class>ro.radcom.frm.util.SetResponseStatusHandler</tag-class>
+        <attribute>
+            <name>value</name>
+            <type>java.lang.Integer</type>
+            <required>true</required>
+        </attribute>
+    </tag>
+    <function>
+        <description>Constructs url for browser use from specified path.</description>
+        <name>makeUrl</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String makeUrl(javax.servlet.jsp.PageContext, java.lang.String)</function-signature>
+        <example>${webutil:makeUrl(pageContext, '/path')}</example>
+    </function>
+    <function>
+        <description>checks access on required page</description>
+        <name>hasAccessOnPage</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>boolean hasAccessOnPage(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)</function-signature>
+        <example>${webutil:hasAccessOnPage(pageContext.request, 'SOME_PAGE', 'READ')}</example>
+    </function>
+    <function>
+        <description>checks user has specified role</description>
+        <name>isUserInRole</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>boolean isUserInRole(javax.servlet.http.HttpServletRequest, java.lang.String)</function-signature>
+        <example>${webutil:isUserInRole(pageContext.request, 'SOME_ROLE')}</example>
+    </function>
+    <function>
+        <description>Format date value as string</description>
+        <name>formatDate</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String formatDate(javax.servlet.jsp.PageContext, java.util.Date, java.lang.String)</function-signature>
+        <example>${webutil:formatDate(pageContext, date, "dd-MM-yyyy HH:mm:ss"}</example>
+    </function>
+    <function>
+        <description>Format minute of day value as string</description>
+        <name>formatMinuteOfDay</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String formatMinuteOfDay(java.lang.Integer, java.lang.String)</function-signature>
+        <example>${webutil:formatMinuteOfDay(date, "HH:mm"}</example>
+    </function>
+    <function>
+        <description>Format current date value as string</description>
+        <name>formatCurrentDate</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String formatCurrentDate(javax.servlet.jsp.PageContext, java.lang.String)</function-signature>
+        <example>${webutil:formatCurrentDate(pageContext, "dd-MM-yyyy HH:mm:ss"}</example>
+    </function>
+    <function>
+        <description>Escape given string for exact match in database like operator</description>
+        <name>escapeForLikeOperator</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String escapeForLikeOperator(java.lang.String)</function-signature>
+        <example>${webutil:escapeForLikeOperator("someDataWithLikeSpechialChars_%\"}</example>
+    </function>
+    <function>
+        <description>Determine language from current page context.</description>
+        <name>calcLanguage</name>
+        <function-class>ro.radcom.frm.util.ViewUtils</function-class>
+        <function-signature>java.lang.String calcLanguage(javax.servlet.jsp.PageContext)</function-signature>
+        <example>${webutil:calcLanguage(pageContext)}</example>
+    </function>
+    <!-- from external libraries -->
+    <function>
+        <description>Escape ecma script utility function.</description>
+        <name>escapeEcmaScript</name>
+        <function-class>org.apache.commons.lang3.StringEscapeUtils</function-class>
+        <function-signature>java.lang.String escapeEcmaScript(java.lang.String)</function-signature>
+        <example>${webutil:escapeEcmaScript("sometext")}</example>
+    </function>
+    <function>
+        <description>Escape json utility function.</description>
+        <name>escapeJson</name>
+        <function-class>org.apache.commons.lang3.StringEscapeUtils</function-class>
+        <function-signature>java.lang.String escapeJson(java.lang.String)</function-signature>
+        <example>${webutil:escapeJson("sometext")}</example>
+    </function>
+    <function>
+        <description>Escape html 4 utility function.</description>
+        <name>escapeHtml4</name>
+        <function-class>org.apache.commons.lang3.StringEscapeUtils</function-class>
+        <function-signature>java.lang.String escapeHtml4(java.lang.String)</function-signature>
+        <example>${webutil:escapeHtml4("sometext")}</example>
+    </function>
+    <function>
+        <description>Escape xml 1.0 utility function.</description>
+        <name>escapeXml10</name>
+        <function-class>org.apache.commons.lang3.StringEscapeUtils</function-class>
+        <function-signature>java.lang.String escapeXml10(java.lang.String)</function-signature>
+        <example>${webutil:escapeXml10("sometext")}</example>
+    </function>
+</taglib>
