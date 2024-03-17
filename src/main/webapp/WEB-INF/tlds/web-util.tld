@@ -11,23 +11,28 @@
     <tag>
         <name>setResponseHeader</name>
         <tag-class>ro.radcom.frm.util.SetResponseHeaderHandler</tag-class>
+        <body-content>empty</body-content>
         <attribute>
             <name>header</name>
-            <type>java.lang.String</type>
             <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.String</type>
         </attribute>
         <attribute>
             <name>value</name>
+            <rtexprvalue>false</rtexprvalue>
             <type>java.lang.String</type>
         </attribute>
     </tag>
     <tag>
         <name>setResponseStatus</name>
         <tag-class>ro.radcom.frm.util.SetResponseStatusHandler</tag-class>
+        <body-content>empty</body-content>
         <attribute>
             <name>value</name>
-            <type>java.lang.Integer</type>
             <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.Integer</type>
         </attribute>
     </tag>
     <function>
