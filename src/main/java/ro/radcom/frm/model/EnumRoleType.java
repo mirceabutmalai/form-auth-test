@@ -96,15 +96,16 @@ public enum EnumRoleType {
 
     private void initRights() {
         switch (this) {
-            case FORM_AUTH_ADMIN -> {
+            case FORM_AUTH_ADMIN:
                 mapOfRightsPerPage.put(EnumPageType.TEST, EnumRightType.WRITE);
-            }
+                break;
 
-            case FORM_AUTH_OPER -> {
+            case FORM_AUTH_OPER:
                 mapOfRightsPerPage.put(EnumPageType.TEST, EnumRightType.WRITE);
-            }
+                break;
 
-            default -> {}
+            default:
+                break;
         }
     }
 

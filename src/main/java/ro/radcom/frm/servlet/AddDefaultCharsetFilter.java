@@ -92,7 +92,8 @@ public final class AddDefaultCharsetFilter
             }
         }
 
-        includeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        //includeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        includeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(new Pattern[] {});
         encoding = calcEncoding;
 
         LOG.info("started add default charset filter");
@@ -135,11 +136,11 @@ public final class AddDefaultCharsetFilter
 
         // If there was a problem, we want to rethrow it if it is a known type, otherwise log it.
         if (problem != null) {
-            if (problem instanceof ServletException servletProblem) {
-                throw servletProblem;
+            if (problem instanceof ServletException) {
+                throw (ServletException) problem;
             }
-            if (problem instanceof IOException ioProblem) {
-                throw ioProblem;
+            if (problem instanceof IOException) {
+                throw (IOException) problem;
             }
             throw new ServletException(problem);
         }

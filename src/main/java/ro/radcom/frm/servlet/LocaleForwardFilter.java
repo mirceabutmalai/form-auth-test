@@ -71,7 +71,8 @@ public final class LocaleForwardFilter
         }
 
         servletContext = ctx;
-        excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        //excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(new Pattern[] {});
 
         LOG.info("started locale filter");
     }
@@ -113,11 +114,11 @@ public final class LocaleForwardFilter
 
         // If there was a problem, we want to rethrow it if it is a known type, otherwise log it.
         if (problem != null) {
-            if (problem instanceof ServletException servletProblem) {
-                throw servletProblem;
+            if (problem instanceof ServletException) {
+                throw (ServletException) problem;
             }
-            if (problem instanceof IOException ioProblem) {
-                throw ioProblem;
+            if (problem instanceof IOException) {
+                throw (IOException) problem;
             }
             throw new ServletException(problem);
         }

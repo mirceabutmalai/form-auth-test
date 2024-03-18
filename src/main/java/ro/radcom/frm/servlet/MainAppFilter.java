@@ -81,7 +81,8 @@ public final class MainAppFilter
             }
         }
 
-        excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        //excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(Pattern[]::new);
+        excludeUrlPatterns = (aList.isEmpty()) ? null : aList.toArray(new Pattern[] {});
 
         LOG.info("started main application filter");
     }
@@ -284,8 +285,8 @@ public final class MainAppFilter
     private WarUserInfo extractUserInfo(final HttpSession session) {
         final Object objUserInfo = session.getAttribute(WarUserInfo.ATTRIBUTE_NAME);
         WarUserInfo userInfo = null;
-        if ((objUserInfo != null) && (objUserInfo instanceof WarUserInfo aUserInfo)) {
-            userInfo = aUserInfo;
+        if ((objUserInfo != null) && (objUserInfo instanceof WarUserInfo)) {
+            userInfo = (WarUserInfo) objUserInfo;
         }
         return userInfo;
     }
@@ -302,8 +303,8 @@ public final class MainAppFilter
         }
 
         GSSCredential tmpGssCredential = null;
-        if ((userPrinc != null) && (userPrinc instanceof TomcatPrincipal tomcatPrincipal)) {
-            tmpGssCredential = tomcatPrincipal.getGssCredential();
+        if ((userPrinc != null) && (userPrinc instanceof TomcatPrincipal)) {
+            tmpGssCredential = ((TomcatPrincipal) userPrinc).getGssCredential();
         }
 
         userInfo.setValidLdapResult(false);

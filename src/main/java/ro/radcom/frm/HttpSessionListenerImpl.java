@@ -30,11 +30,16 @@ public final class HttpSessionListenerImpl
     @Override
     public void sessionCreated(final HttpSessionEvent se) {
         HttpSessionListener.super.sessionCreated(se);
+        se.getSession().getId();
+        se.getSession().getMaxInactiveInterval();
     }
 
     @Override
     public void sessionDestroyed(final HttpSessionEvent se) {
         HttpSessionListener.super.sessionDestroyed(se);
+
+        se.getSession().getId();
+        se.getSession().getMaxInactiveInterval();
 
         final HttpSession session = se.getSession();
         if (session == null) {
